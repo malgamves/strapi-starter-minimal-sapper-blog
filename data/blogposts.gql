@@ -1,0 +1,11 @@
+query Blogs {  
+  blogs {
+    id
+    Title
+    Decription
+    Body
+    Cover {
+      url
+    }
+  }
+}
