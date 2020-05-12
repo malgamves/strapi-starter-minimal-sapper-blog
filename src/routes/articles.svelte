@@ -43,7 +43,8 @@
 		blogs {
 			id
 			Title
-			Decription
+			Description
+			Published
 			Body
 			Cover {
 			url
@@ -75,8 +76,11 @@
 
 <ul>
 	{#each posts as post}
+		<hr>
+		<h4>{post.Published}</h4>
+		<img alt={post.Cover.alternativeText} src={'http://localhost:1337' + post.Cover.url}>
 		<h2>{post.Title}</h2>
-		<h3>{post.Decription}</h3>
-		<img alt='Success Kid' src={'http://localhost:1337' + post.Cover.url}>
+		<h3>{post.Description}</h3>
+		
 	{/each}
 </ul>

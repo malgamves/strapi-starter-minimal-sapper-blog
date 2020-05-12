@@ -1,16 +1,39 @@
 <script context="module">
-	export async function preload({ params, query }) {
-		// the `slug` parameter is available because
-		// this file is called [slug].svelte
-		const res = await this.fetch(`blog/${params.slug}.json`);
-		const data = await res.json();
+	import ApolloClient, { gql } from 'apollo-boost';  
+	//import blogQuery from '.../data/blogposts.gql';
 
-		if (res.status === 200) {
-			return { post: data };
-		} else {
-			this.error(res.status, data.message);
+	// 1. Create an Apollo client and pass it to all child components
+	//    (uses svelte's built-in context)
+	const blogQuery = gql`
+	query Blogs($Slug: String!) {
+		blogs: blogs(where: { Slug: $Slug }) {
+			id
+			Title
+			Description
+			Published
+			Body
+			Slug
+			Cover {
+			url
+			previewUrl
+			alternativeText
+			}
 		}
+		}
+	`;
+	export async function preload({params, query}) {
+		const client = new ApolloClient({ 
+			uri: 'http://localhost:1337/graphql',
+			fetch: this.fetch
+			 });
+		const results = await client.query({
+			query: blogQuery,
+			variables: {"Slug" : params.slug} 
+		})
+
+		return {post: results.data.blogs}
 	}
+
 </script>
 
 <script>
@@ -54,11 +77,19 @@
 </style>
 
 <svelte:head>
-	<title>{post.title}</title>
+	<title>{post.Title}</title>
 </svelte:head>
 
-<h1>{post.title}</h1>
+{#each post as post}
+		<!-- we're using the non-standard `rel=prefetch` attribute to
+				tell Sapper to load the data for the page as soon as
+				the user hovers over the link or taps it, instead of
+				waiting for the 'click' event -->
+		<h1>{post.Title}</h1>
+		<h3>{post.Description}</h3>
 
-<div class='content'>
-	{@html post.html}
-</div>
+		<div class='content'>
+	{@html post.Body} </div>
+
+{/each}
+
