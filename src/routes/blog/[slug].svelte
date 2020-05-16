@@ -1,6 +1,6 @@
 <script context="module">
 	import ApolloClient, { gql } from 'apollo-boost';  
-	//import blogQuery from '.../data/blogposts.gql';
+	import moment from 'moment'
 
 	// 1. Create an Apollo client and pass it to all child components
 	//    (uses svelte's built-in context)
@@ -12,6 +12,9 @@
 			Description
 			Published
 			Body
+			author {
+				username
+			}
 			Slug
 			Cover {
 			url
@@ -86,7 +89,7 @@
 				the user hovers over the link or taps it, instead of
 				waiting for the 'click' event -->
 		<h1>{post.Title}</h1>
-		<h3>{post.Description}</h3>
+		<h3>{moment().to(post.Published)} by {post.author.username}</h3>
 
 		<div class='content'>
 	{@html post.Body} </div>

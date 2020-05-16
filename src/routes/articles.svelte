@@ -11,9 +11,6 @@
 		margin: 0 0 0.5em 0;
 	}
 
-	figure {
-		margin: 0 0 1em 0;
-	}
 
 	img {
 		width: 100%;
@@ -33,25 +30,25 @@
 </style>
 
 <script context="module">
-	import ApolloClient, { gql } from 'apollo-boost';  
-	//import blogQuery from '.../data/blogposts.gql';
+	import ApolloClient, { gql } from 'apollo-boost'; 
+	
 
-	// 1. Create an Apollo client and pass it to all child components
-	//    (uses svelte's built-in context)
 	const blogQuery = gql`
-	query Blogs {  
-		blogs {
-			id
-			Title
-			Description
-			Published
-			Body
-			Cover {
-			url
+		query Blogs {  
+			blogs {
+				id
+				Title
+				Description
+				Published
+				Body
+				Slug
+				Cover {
+				url
+				}
 			}
 		}
-	}
-	`;
+		`;
+
 	export async function preload({params, query}) {
 		const client = new ApolloClient({ 
 			uri: 'http://localhost:1337/graphql',
