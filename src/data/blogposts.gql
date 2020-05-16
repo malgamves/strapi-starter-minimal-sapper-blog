@@ -2,7 +2,7 @@ query Blogs {
   blogs {
     id
     Title
-    Decription
+    Description
     Body
     Cover {
       url
