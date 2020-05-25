@@ -1,6 +1,6 @@
 {
-  "name": "TODO",
-  "description": "TODO",
+  "name": "a-minimal-blog-starter",
+  "description": "a mininmal blog starter built with strapi and sapper",
   "version": "0.0.1",
   "scripts": {
     "dev": "sapper dev",

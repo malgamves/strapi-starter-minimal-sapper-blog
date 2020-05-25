@@ -2,8 +2,6 @@
 	import ApolloClient, { gql } from 'apollo-boost';  
 	import moment from 'moment'
 
-	// 1. Create an Apollo client and pass it to all child components
-	//    (uses svelte's built-in context)
 	const blogQuery = gql`
 	query Blogs {  
 		blogs {
@@ -42,21 +40,21 @@
 </script>
 
 <style>
-	ul {
+	ul, p {
 		margin: 0 0 1em 0;
 		line-height: 1.5;
 	}
 
 	.main-title {
-		font-size: 30px;
+		font-size: 25px;
 	}
 </style>
 
 <svelte:head>
-	<title>Blog</title>
+	<title>articles</title>
 </svelte:head>
 
-<h1>Recent posts</h1>
+<h1>recent posts</h1>
 
 <ul>
 	{#each posts as post}
@@ -64,7 +62,8 @@
 				tell Sapper to load the data for the page as soon as
 				the user hovers over the link or taps it, instead of
 				waiting for the 'click' event -->
-		<li><a class="main-title" rel='prefetch' href='blog/{post.Slug}'>{post.Title}</a></li>
+		<li><a class="main-title" rel='prefetch' href='articles/{post.Slug}'>{post.Title}</a></li>
 		<p> {moment().to(post.Published, "DD-MM-YYYY")} ago by {post.author.username} </p>
 	{/each}
 </ul>
+

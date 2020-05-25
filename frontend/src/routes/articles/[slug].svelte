@@ -16,11 +16,6 @@
 				username
 			}
 			Slug
-			Cover {
-			url
-			previewUrl
-			alternativeText
-			}
 		}
 		}
 	`;
@@ -80,7 +75,7 @@
 </style>
 
 <svelte:head>
-	<title>{post.Title}</title>
+	<title>an amazing article</title>
 </svelte:head>
 
 {#each post as post}
@@ -88,11 +83,13 @@
 				tell Sapper to load the data for the page as soon as
 				the user hovers over the link or taps it, instead of
 				waiting for the 'click' event -->
-		<h1>{post.Title}</h1>
+		<h2>{post.Title}</h2>
 		<h3>{moment().to(post.Published)} by {post.author.username}</h3>
 
 		<div class='content'>
 	{@html post.Body} </div>
 
 {/each}
+
+<p>⇺<a href="articles"> back to articles</a></p>
 
