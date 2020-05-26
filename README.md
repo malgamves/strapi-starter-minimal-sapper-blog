@@ -13,10 +13,13 @@ This starter helps you get started building a blog with Sapper and Strapi. Feel 
 - GraphQL first approach
 
 ## Content Model
--
--
--
--
+- `Title` : Text
+- `Description` : Text
+- `Published` : Date
+- `Body` : Rich Text
+- `Slug` : Text
+- `author` : Relation wth User
+
 
 ## In the works
 - Article name in page title
