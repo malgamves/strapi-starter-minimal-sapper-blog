@@ -53,7 +53,7 @@ npm install
 Then run `npm run dev` to start your frontend server.
 
 ### Backend
-The backend is built with Strapi. This sets up your frontend.
+The backend is built with Strapi. This sets up your backend.
 ```bash
 cd backend
 
